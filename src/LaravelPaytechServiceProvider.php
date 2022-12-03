@@ -19,7 +19,7 @@ class LaravelPaytechServiceProvider extends PackageServiceProvider
             ->name('laravel-paytech')
             ->hasConfigFile('paytech')
             ->hasViews()
-            ->publishesServiceProvider('TestPackages')
+            ->publishesServiceProvider('PaytechServiceProvider')
             ->hasRoute('web')
             ->hasMigration('create_payment_table')
             ->runsMigrations()

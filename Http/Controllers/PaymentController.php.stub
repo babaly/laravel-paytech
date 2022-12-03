@@ -18,7 +18,7 @@ class PaymentController extends Controller
     public function index()
     {
 
-        return view('vendor.test-packages.index');
+        return view('vendor.paytech.index');
     }
 
     public function payment(PaymentRequest $request, PaytechService $paymentService)
@@ -135,7 +135,7 @@ class PaymentController extends Controller
             ['user_id', '=', auth()->user()->id]
         ])->first(); */
 
-        return view('vendor.test-packages.success'/* , compact('record') */)->with('success', 'Félicitation, Votre paiement est éffectué avec succès');
+        return view('vendor.paytech.success'/* , compact('record') */)->with('success', 'Félicitation, Votre paiement est éffectué avec succès');
     }
 
     public function cancel()

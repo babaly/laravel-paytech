@@ -1,0 +1,34 @@
+<?php
+
+use Illuminate\Database\Migrations\Migration;
+use Illuminate\Database\Schema\Blueprint;
+use Illuminate\Support\Facades\Schema;
+
+//use App\Models\User;
+
+return new class extends Migration
+{
+    public function up()
+    {
+        Schema::create('payments', function (Blueprint $table) {
+             $table->id();
+            $table->string('product_name');
+            $table->string('token')->unique()->nullable();
+            $table->integer('amount');
+            $table->integer('qty');
+            $table->string('user_id')->nullable(); // It's used because we don't have user model
+            /*
+                You can use this methods to create user foreign key
+                Don't forget to import the User model on the top
+                $table
+                    ->foreignIdFor(User::class)
+                    ->nullable()
+                    ->constrained()
+                    ->onUpdate('cascade')
+                    ->onDelete('cascade');
+            */
+            $table->timestamps();
+            $table->softDeletes();
+        });
+    }
+};

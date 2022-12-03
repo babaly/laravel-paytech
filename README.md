@@ -1,75 +1,134 @@
-# :package_description
+# Laravel Paytech Payment
 
-[![Latest Version on Packagist](https://img.shields.io/packagist/v/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-[![GitHub Tests Action Status](https://img.shields.io/github/workflow/status/:vendor_slug/:package_slug/run-tests?label=tests)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3Arun-tests+branch%3Amain)
-[![GitHub Code Style Action Status](https://img.shields.io/github/workflow/status/:vendor_slug/:package_slug/Fix%20PHP%20code%20style%20issues?label=code%20style)](https://github.com/:vendor_slug/:package_slug/actions?query=workflow%3A"Fix+PHP+code+style+issues"+branch%3Amain)
-[![Total Downloads](https://img.shields.io/packagist/dt/:vendor_slug/:package_slug.svg?style=flat-square)](https://packagist.org/packages/:vendor_slug/:package_slug)
-<!--delete-->
----
-This repo can be used to scaffold a Laravel package. Follow these steps to get started:
+[![Latest Version on Packagist](https://img.shields.io/packagist/v/babaly/laravel-paytech.svg?style=flat-square)](https://packagist.org/packages/babaly/laravel-paytech)
 
-1. Press the "Use this template" button at the top of this repo to create a new repo with the contents of this skeleton.
-2. Run "php ./configure.php" to run a script that will replace all placeholders throughout all the files.
-3. Have fun creating your package.
-4. If you need help creating a package, consider picking up our <a href="https://laravelpackage.training">Laravel Package Training</a> video course.
----
-<!--/delete-->
-This is where your description should go. Limit it to a paragraph or two. Consider adding a small example.
+[![Total Downloads](https://img.shields.io/packagist/dt/babaly/laravel-paytech.svg?style=flat-square)](https://packagist.org/packages/babaly/laravel-paytech)
 
-## Support us
+## Description
 
-[<img src="https://github-ads.s3.eu-central-1.amazonaws.com/:package_name.jpg?t=1" width="419px" />](https://spatie.be/github-ad-click/:package_name)
+This package help laravel developpers to use the [paytech](https://paytech.sn/) payment methods created by [Intech-group](https://intech.sn/).
 
-We invest a lot of resources into creating [best in class open source packages](https://spatie.be/open-source). You can support us by [buying one of our paid products](https://spatie.be/open-source/support-us).
-
-We highly appreciate you sending us a postcard from your hometown, mentioning which of our package(s) you are using. You'll find our address on [our contact page](https://spatie.be/about-us). We publish all received postcards on [our virtual postcard wall](https://spatie.be/open-source/postcards).
+[<img src="https://paytech.sn/assets/srcs/img/new-image/paytech-7.png" width="419px" />]
 
 ## Installation
 
 You can install the package via composer:
 
 ```bash
-composer require :vendor_slug/:package_slug
+composer require babaly/laravel-paytech
 ```
+
+Add the service provider to config/app.php into providers section
+
+```php
+return [
+    'providers' => [
+        ...
+        App\Providers\PaytechServiceProvider::class
+    ]
+];
+```
+You can publish all tags by running the command
+
+```bash
+php artisan vendor:publish --provider="Babaly\LaravelPaytech\LaravelPaytechServiceProvider"
+```
+
+--OR--
 
 You can publish and run the migrations with:
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-migrations"
+php artisan vendor:publish --tag="laravel-paytech-migrations"
 php artisan migrate
 ```
 
 You can publish the config file with:
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-config"
+php artisan vendor:publish --tag="laravel-paytech-config"
 ```
 
 This is the contents of the published config file:
 
 ```php
 return [
+    'PAYTECH_API_KEY' => '',
+    'PAYTECH_SECRET_KEY' => '',
 ];
 ```
 
 Optionally, you can publish the views using
 
 ```bash
-php artisan vendor:publish --tag=":package_slug-views"
+php artisan vendor:publish --tag="laravel-paytech-views"
+```
+
+You can publish the services file with:
+
+```bash
+php artisan vendor:publish --tag="laravel-paytech-services"
+```
+
+You can publish the model file with:
+
+```bash
+php artisan vendor:publish --tag="laravel-paytech-models"
+```
+
+You can publish the controller file with:
+
+```bash
+php artisan vendor:publish --tag="laravel-paytech-controllers"
 ```
 
 ## Usage
 
+Copy the API_SECRET_KEY and API_KEY from your paytech account and paste it to the config file with somethings likde this
+
 ```php
-$variable = new VendorName\Skeleton();
-echo $variable->echoPhrase('Hello, VendorName!');
+return [
+    'PAYTECH_API_KEY' => '',
+    'PAYTECH_SECRET_KEY' => '',
+];
 ```
 
-## Testing
+Run Your application with the artisan command
 
 ```bash
-composer test
+php artisan serve
 ```
+
+After that, visit the payment route to test payment platform
+
+```php
+http://127.0.0.1:8000/payment
+```
+
+NB: Make sure that the routes is copied to default route web, else, copied the next line to your route file
+
+```php
+use App\Http\Controllers\PaymentController;
+
+Route::get('payment', [PaymentController::class, 'index'])->name('payment.index');
+Route::post('/checkout', [PaymentController::class, 'payment'])->name('payment.submit');
+Route::get('ipn', [PaymentController::class, 'ipn'])->name('paytech-ipn');
+Route::get('payment-success/{code}', [PaymentController::class, 'success'])->name('payment.success');
+Route::get('payment/{code}/success', [PaymentController::class, 'paymentSuccessView'])->name('payment.success.view');
+Route::get('payment-cancel', [PaymentController::class, 'cancel'])->name('paytech.cancel');
+```
+
+A windows like this image will appear if everythings is ok
+
+![Alt text](https://user-images.githubusercontent.com/65746012/205400258-1fb6543f-5541-45e0-8f07-4d56a3164f60.png)
+
+Click the button to validate the command and you'll be redirected to paytech platform payment
+
+![Alt text]([http://full/path/to/img.jpg](https://github.com/babaly/laravel-paytech/../../../../paytech2.png) 
+
+![Alt text]([http://full/path/to/img.jpg](https://github.com/babaly/laravel-paytech/../../../../paytech3.png) 
+
+![Alt text]([http://full/path/to/img.jpg](https://github.com/babaly/laravel-paytech/../../../../paytech4.png) 
 
 ## Changelog
 
@@ -85,7 +144,7 @@ Please review [our security policy](../../security/policy) on how to report secu
 
 ## Credits
 
-- [:author_name](https://github.com/:author_username)
+- [Baba LY](https://github.com/babaly)
 - [All Contributors](../../contributors)
 
 ## License

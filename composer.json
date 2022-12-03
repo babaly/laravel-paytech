@@ -1,18 +1,20 @@
 {
-    "name": ":vendor_slug/:package_slug",
-    "description": ":package_description",
+    "name": "babaly/laravel-paytech",
+    "description": "This package helps laravel developers to use paytech payment platform into their website (ecommerce etc.)",
     "keywords": [
-        ":vendor_name",
+        "babaly",
         "laravel",
-        ":package_slug"
+        "laravel-paytech",
+        "paytech",
+        "paytech.sn"
     ],
-    "homepage": "https://github.com/:vendor_slug/:package_slug",
+    "homepage": "https://github.com/babaly/laravel-paytech",
     "license": "MIT",
     "authors": [
         {
-            "name": ":author_name",
-            "email": "author@domain.com",
-            "role": "Developer"
+            "name": "Baba LY",
+            "email": "lymamadou41@gmail.com",
+            "role": "Web Developer"
         }
     ],
     "require": {
@@ -23,33 +25,25 @@
     "require-dev": {
         "laravel/pint": "^1.0",
         "nunomaduro/collision": "^6.0",
-        "nunomaduro/larastan": "^2.0.1",
         "orchestra/testbench": "^7.0",
         "pestphp/pest": "^1.21",
         "pestphp/pest-plugin-laravel": "^1.1",
-        "phpstan/extension-installer": "^1.1",
-        "phpstan/phpstan-deprecation-rules": "^1.0",
-        "phpstan/phpstan-phpunit": "^1.0",
         "phpunit/phpunit": "^9.5",
         "spatie/laravel-ray": "^1.26"
     },
     "autoload": {
         "psr-4": {
-            "VendorName\\Skeleton\\": "src",
-            "VendorName\\Skeleton\\Database\\Factories\\": "database/factories"
+            "Babaly\\LaravelPaytech\\": "src",
+            "Babaly\\LaravelPaytech\\Database\\Factories\\": "database/factories"
         }
     },
     "autoload-dev": {
         "psr-4": {
-            "VendorName\\Skeleton\\Tests\\": "tests"
+            "Babaly\\LaravelPaytech\\Tests\\": "tests"
         }
     },
     "scripts": {
-        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi",
-        "analyse": "vendor/bin/phpstan analyse",
-        "test": "vendor/bin/pest",
-        "test-coverage": "vendor/bin/pest --coverage",
-        "format": "vendor/bin/pint"
+        "post-autoload-dump": "@php ./vendor/bin/testbench package:discover --ansi"
     },
     "config": {
         "sort-packages": true,
@@ -61,10 +55,10 @@
     "extra": {
         "laravel": {
             "providers": [
-                "VendorName\\Skeleton\\SkeletonServiceProvider"
+                "Babaly\\LaravelPaytech\\LaravelPaytechServiceProvider"
             ],
             "aliases": {
-                "Skeleton": "VendorName\\Skeleton\\Facades\\Skeleton"
+                "LaravelPaytech": "Babaly\\LaravelPaytech\\Facades\\LaravelPaytech"
             }
         }
     },

@@ -6,7 +6,7 @@
 
 ## Description
 
-This package help laravel developpers to use the [paytech](https://paytech.sn/) payment methods created by [Intech-group](https://intech.sn/).
+This package help laravel developers to use the [paytech](https://paytech.sn/) payment methods created by [Intech-group](https://intech.sn/).
 
 [<img src="https://paytech.sn/assets/srcs/img/new-image/paytech-7.png" width="419px" />]
 
@@ -120,16 +120,26 @@ Route::get('payment-cancel', [PaymentController::class, 'cancel'])->name('paytec
 
 A windows like this image will appear if everythings is ok
 
-![Alt text](https://user-images.githubusercontent.com/65746012/205400258-1fb6543f-5541-45e0-8f07-4d56a3164f60.png)
+![Alt text](https://user-images.githubusercontent.com/65746012/205413240-23dbf575-3ac1-4ee6-b0c9-8b367be42ff2.png)
 
 Click the button to validate the command and you'll be redirected to paytech platform payment
 
-![Alt text]([http://full/path/to/img.jpg](https://github.com/babaly/laravel-paytech/../../../../paytech2.png) 
+![Alt text](https://user-images.githubusercontent.com/65746012/205413259-7fca6061-44a9-4cba-8332-0f4ed655d7be.png)
 
-![Alt text]([http://full/path/to/img.jpg](https://github.com/babaly/laravel-paytech/../../../../paytech3.png) 
+![Alt text](https://user-images.githubusercontent.com/65746012/205413273-e8a783d1-d89d-4722-b125-f6153b431fc7.png)
 
-![Alt text]([http://full/path/to/img.jpg](https://github.com/babaly/laravel-paytech/../../../../paytech4.png) 
+![Alt text](https://user-images.githubusercontent.com/65746012/205413285-02dbe1fd-9f20-4064-9407-96aaca82d7ec.png)
 
+![Alt text](https://user-images.githubusercontent.com/65746012/205413298-452af97f-fc1e-41d6-89ba-218c21291984.png)
+
+## Mode Production
+
+Don't forget to set test mode to false if you're in production. You can disabled to the controller
+by calling methods setTestMode(false) or enable the live mode with setLiveMode(true).
+
+If you're in test mode, Paytech retrieve just 100xof for any of your transactions amount. See more about transactions to their [documentation](https://paytech.sn/)
+
+See their [documentation](https://doc.paytech.sn/) for more information
 ## Changelog
 
 Please see [CHANGELOG](CHANGELOG.md) for more information on what has changed recently.

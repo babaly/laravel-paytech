@@ -15,7 +15,7 @@ class PaytechServiceProvider extends ServiceProvider
     public function register()
     {
         $this->app->bind(PaytechService::class, function($app) {
-			return new PaytechService(config('test-packages.PAYTECH_API_KEY'),config('test-packages.PAYTECH_SECRET_KEY'));
+			return new PaytechService(config('paytech.PAYTECH_API_KEY'),config('paytech.PAYTECH_SECRET_KEY'));
 		});
     }
 
